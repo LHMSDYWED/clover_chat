@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>clover_parent</artifactId>
+        <groupId>com.wechat</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>config</artifactId>
+
+    <dependencies>
+        <!--spring_cloudConfig配置文件中心服务端，集中处理工程的配置文件-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+        <!--spring_cloudBus消息总线组件，实现配置的自动更新，以下两个都是，这里不需要客户端的东西-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-bus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <!--当前工程的名称-->
+        <finalName>config</finalName>
+        <plugins>
+            <!--spring-boot的Maven插件，docker的maven插件需要这个配合-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- docker的maven插件，官网：https://github.com/spotify/docker-maven-plugin -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <!--制作成镜像的名称-->
+                    <imageName>120.79.93.99:5000/${project.artifactId}:${project.version}</imageName>
+                    <!--基础镜像-->
+                    <baseImage>jdk1.8</baseImage>
+                    <!--打成jar包的命令-->
+                    <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <dockerHost>http://120.79.93.99:2375</dockerHost>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,25 @@
+server:
+  port: 9107
+spring:
+  application:
+    name: clover-userinfo
+wechat:
+  appid: wxccd66952399e9866                  #小程序 appId
+  secret: b4aa5d05a5289a516240420beb36388a   #小程序 appSecret
+  grant-type: authorization_code             #授权类型，此处只需填写 authorization_code
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.192.129:6868/eureka
+  instance:
+    prefer-ip-address: true
+ribbon:                      ##网络连接不好的时候需要配置
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

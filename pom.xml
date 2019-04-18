@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wechat</groupId>
+    <artifactId>clover_parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>clover_common</module>
+        <module>clover_user</module>
+        <module>clover_car</module>
+        <module>clover_charge</module>
+        <module>clover_dynamic</module>
+        <module>clover_feedback</module>
+        <module>clover_repair</module>
+        <module>clover_spitslot</module>
+        <module>clover_sms</module>
+        <module>clover_eureka</module>
+        <module>clover_wechat</module>
+        <module>clover_manager</module>
+        <module>clover_userinfo</module>
+        <module>clover_upload</module>
+        <module>clover_config</module>
+        <module>config</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <name>clover_parent</name>
+    <description>小区生态微信小程序</description>
+    <!--父工程需要导入这个-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <!--字符编码，以及java_jdk的版本,spring_cloud的版本-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+    <!--dependencyManagement里的依赖不会自动注入，子工程需要再次申明，只是不用写版本号-->
+    <dependencyManagement>
+        <dependencies>
+            <!--spring_cloud的需要的依赖-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.M9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!--dependencies里的依赖会自动注入，子工程不用再声明-->
+    <dependencies>
+        <!--spring_bootWEB工程需要的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--spring_bootTest需要的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <!--配置远程仓库-->
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <!--设置远程仓库从哪里下载插件那些-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

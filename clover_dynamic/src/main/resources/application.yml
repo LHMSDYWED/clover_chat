@@ -1,0 +1,37 @@
+server: 
+  port: 9103
+spring: 
+  application:  
+    name: clover-dynamic #指定服务名
+  datasource:  
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-wz9i32b5zpqh03zo0ao.mysql.rds.aliyuncs.com:3306/clover_dynamic?characterEncoding=UTF8&useSSL=false
+    username: root
+    password: 1994buyaozheyangA
+  data:
+    mongodb:
+      host: 120.79.93.99
+      database: dthumbup
+  jpa: 
+    database: MySQL
+    show-sql: true
+jwt:
+  config:
+    key: clover
+    ttl: 3600000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.0.0.47:6868/eureka
+  instance:
+    prefer-ip-address: true
+ribbon:                      ##网络连接不好的时候需要配置
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

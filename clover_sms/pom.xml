@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>clover_parent</artifactId>
+        <groupId>com.wechat</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>clover_sms</artifactId>
+
+    <dependencies>
+        <!--引入spring_bootRabbitMQ消息队列的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <!--阿里云短信需要的依赖，以下两个都是-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>3.2.5</version>  <!-- 注：如提示报错，先升级基础包版，无法解决可联系技术支持 -->
+        </dependency>
+        <!--&lt;!&ndash;spring_cloudConfig配置文件中心客户端，集中处理工程的配置文件&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-config</artifactId>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;spring_cloudBus消息总线组件，实现配置的自动更新，以下三个都是&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-bus</artifactId>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;spring-cloud连接RabbitMQ需要的依赖，和sping-boot要区分开，主要是BUS消息总线用&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-stream-binder-rabbit</artifactId>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;BUS消息总线客户端需要&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+        <!--</dependency>-->
+        <!--聚合科技-->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+    </dependencies>
+</project>

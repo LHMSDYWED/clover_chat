@@ -1,0 +1,7 @@
+server:
+  port: 9110
+spring:
+  application:
+    name: clover-sms
+  rabbitmq:
+    host: 120.79.93.99
